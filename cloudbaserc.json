@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "envId": "{{env.ENV_ID}}",
+  "framework": {
+    "name": "Drupal",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-container",
+        "inputs": {
+          "serviceName": "drupal",
+          "servicePath": "/",
+          "uploadType": "image",
+          "cpu": 1,
+          "mem": 2,
+          "imageInfo": {
+            "imageUrl": "ccr.ccs.tencentyun.com/tcbimages/drupal-tcb:1.0"
+          },
+          "containerPort": 8080,
+          "envVariables": {
+            "DRUPAL_DATABASE_HOST": "{{env.DB_IP}}",
+            "DRUPAL_DATABASE_NAME": "drupal",
+            "DRUPAL_DATABASE_PORT_NUMBER": "{{env.DB_PORT}}",
+            "DRUPAL_DATABASE_USER": "{{env.MYSQL_USERNAME}}",
+            "DRUPAL_DATABASE_PASSWORD": "{{env.MYSQL_PASSWORD}}",
+            "DRUPAL_USERNAME": "{{env.DRUPAL_USERNAME}}",
+            "DRUPAL_PASSWORD": "{{env.DRUPAL_PASSWORD}}",
+            "PORT": "8080",
+            "ALLOW_EMPTY_PASSWORD": "yes",
+            "TCB_NOT_SHOW_CYNOS_DB": "${Outputs.drupal.Properties.InstanceId}"
+          },
+          "initialDelaySeconds": 10,
+          "volumeMounts": {
+            "/bitnami/drupal": "drupal-cfs"
+          }
+        }
+      }
+    },
+    "requirement": {
+      "addons": [
+        {
+          "type": "CFS",
+          "name": "drupal-cfs"
+        },
+        {
+          "type": "CynosDB",
+          "name": "drupal",
+          "envMap": {
+            "IP": "DB_IP",
+            "PORT": "DB_PORT",
+            "USERNAME": "MYSQL_USERNAME",
+            "PASSWORD": "MYSQL_PASSWORD"
+          }
+        }
+      ],
+      "environment": {
+        "DRUPAL_USERNAME": {
+          "description": "管理控制台账号",
+          "required": true,
+          "default": "admin"
+        },
+        "DRUPAL_PASSWORD": {
+          "description": "初始管理控制台密码",
+          "required": true,
+          "default": "drupal@123"
+        }
+      }
+    }
+  }
+}
