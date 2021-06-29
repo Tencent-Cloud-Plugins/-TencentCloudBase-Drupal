@@ -2,7 +2,7 @@
   <img height="100px" src="./logo.png" />
 </p>
 
-# [Ehterpad](https://github.com/ether/etherpad-lite)
+# [Drupal](https://github.com/drupal/drupal)
 
 Drupal是一个开源的内容管理系统(CMS)平台。
 
