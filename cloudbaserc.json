@@ -31,19 +31,12 @@
             "MYSQL_CLIENT_CREATE_DATABASE_NAME": "drupal",
             "TCB_NOT_SHOW_CYNOS_DB": "${Outputs.drupal.Properties.InstanceId}"
           },
-          "initialDelaySeconds": 120,
-          "volumeMounts": {
-            "/bitnami/drupal": "drupal-cfs"
-          }
+          "initialDelaySeconds": 20
         }
       }
     },
     "requirement": {
       "addons": [
-        {
-          "type": "CFS",
-          "name": "drupal-cfs"
-        },
         {
           "type": "CynosDB",
           "name": "drupal",
