@@ -30,11 +30,9 @@
             "MYSQL_CLIENT_CREATE_DATABASE_USER": "{{env.MYSQL_USERNAME}}",
             "MYSQL_CLIENT_CREATE_DATABASE_PASSWORD": "{{env.MYSQL_PASSWORD}}",
             "MYSQL_CLIENT_CREATE_DATABASE_NAME": "drupal",
-            "PORT": "8080",
-            "ALLOW_EMPTY_PASSWORD": "yes",
             "TCB_NOT_SHOW_CYNOS_DB": "${Outputs.drupal.Properties.InstanceId}"
           },
-          "initialDelaySeconds": 10,
+          "initialDelaySeconds": 120,
           "volumeMounts": {
             "/bitnami/drupal": "drupal-cfs"
           }
